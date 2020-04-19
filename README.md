@@ -2,18 +2,20 @@
 a series of algorithms in python
 please feel free to add and edit
 
-### there are the following algorithms
-bubble sort
-counting sort
+## These have been added:
 
-### the following are going to added soon
-pancake sort
-radix sort
-merge sort
-quick sort
-insertion sort
-bogo sort
-pigeonhole sort
-tim sort
-heap sort
-pancake sort
+* bubble sort
+* counting sort
+
+## These will be added:
+
+* pancake sort
+* radix sort
+* merge sort
+* quick sort
+* insertion sort
+* bogo sort
+* pigeonhole sort
+* tim sort
+* heap sort
+* pancake sort
