@@ -7,11 +7,11 @@ please feel free to add and edit
 * bubble sort
 * counting sort
 * quick sort
+* radix sort
 
 ## These will be added:
 
 * pancake sort
-* radix sort
 * merge sort
 * insertion sort
 * bogo sort

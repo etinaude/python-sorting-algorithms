@@ -6,10 +6,10 @@ import pickle
 import math
 
 array = []
-size = 10
+size = 100
 count =[0]
 out =[0]
-rng = 10
+rng = 101
 
 #intialize
 def srt():
@@ -85,8 +85,25 @@ def quick(arrays,within = False):
 
 #radix sort
 def radix():
-    pass
-    #comming soon
+    global array, rng
+    #find the number of iterations
+    num = math.ceil(math.log10(rng))
+    #loop for each digit
+    for i in range(num,0,-1):
+        buckets =[[],[],[],[],[],[],[],[],[],[]]
+        #seperate into similar digit arrays
+        for j in array:
+            stringz = str(j)
+            #format the number correctly
+            if num>len(stringz):
+                stringz = (num-len(stringz))*"0" +stringz 
+            buckets[int(stringz[i-1:i])].append(j)
+        array = []
+        #add numbers back into the orginal array
+        for k in buckets:
+            array.extend(k)
+    
+    print(array)
 
 #merge sort
 def merge_sort():
@@ -128,5 +145,5 @@ def pancake():
 srt()
 print(array)
 print()
-quick(array)
+radix()
 print(sorted(array))
