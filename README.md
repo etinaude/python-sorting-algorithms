@@ -4,21 +4,19 @@ please feel free to add and edit
 
 ## These have been added:
 
-* bubble sort
-* counting sort
-* quick sort
-* radix sort
-* insertion sort
-* selection sort
+* Bubble sort
+* Counting sort
+* Quick sort
+* Radix sort
+* Insertion sort
+* Selection sort
+* Bogo sort
 
 ## These will be added:
 
-* pancake sort
+* Pancake sort
 * merge sort
-* insertion sort
-* bogo sort
-* pigeonhole sort
-* tim sort
-* heap sort
-* pancake sort
-* sudo bogo sort
+* Pigeonhole sort
+* Tim sort
+* Heap sort
+* Sudo bogo sort

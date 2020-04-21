@@ -6,7 +6,7 @@ import pickle
 import math
 
 array = []
-size = 3
+size = 10
 count =[0]
 out =[0]
 rng = 10
@@ -148,7 +148,29 @@ def select():
 
 #bogo sort
 def bogo():
-    pass
+    # WARNING this can take a LONG time only run with fewer than 10 items to sort
+    global array
+    cont =True 
+    #loop until the array is sorted
+    while cont == True:
+        out =[]
+        cont = False
+        #loop till the starting array has no items in it
+        while len(array) > 0:
+            #move a random item to the end array
+            item = randint(0,len(array)-1)
+            out.append(array[item])
+            array.remove(array[item])
+            #test to see if the array is sorted
+            for i in range(len(out)-1):
+                if out[i] > out[i+1]:
+                    cont = True
+                    break
+        array = []+out
+    
+    print(out)
+    
+    
 #sudo bogo sort
 def sudo_bogo():
     pass
@@ -178,5 +200,5 @@ def pancake():
 srt()
 print(array, "unsorted")
 print()
-bogo()
+merge_sort()
 print(sorted(og), "sorted")
