@@ -8,6 +8,8 @@ please feel free to add and edit
 * counting sort
 * quick sort
 * radix sort
+* insertion sort
+* selection sort
 
 ## These will be added:
 
@@ -19,3 +21,4 @@ please feel free to add and edit
 * tim sort
 * heap sort
 * pancake sort
+* sudo bogo sort

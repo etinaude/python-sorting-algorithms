@@ -6,16 +6,19 @@ import pickle
 import math
 
 array = []
-size = 100
+size = 3
 count =[0]
 out =[0]
-rng = 101
+rng = 10
+og=[]
 
 #intialize
 def srt():
-    global size, array, rng, out, count
+    global size, array, rng, out, count, og
     for i in range(size):
-        array.append(randint(1,rng))
+        num = randint(1,rng)
+        array.append(num)
+        og.append(num)
     for i in range(rng):
         count.append(0)
         out.append(0)
@@ -110,14 +113,44 @@ def merge_sort():
     pass
     #comming soon
 
-
 #insertion sort
 def insertion():
-    pass
-    #comming soon
+    global array
+    out =[array[0]]
+    #loop through orginal array
+    for i in array[1:]:
+        j = 0
+        #give where to slot the item
+        while out[j] < i:
+            j+=1
+            if len(out) <= j:
+                break
+        if len(out) <= j:
+            out.append(i)
+        else:
+            out.insert(j,i)
+    print(out)
+
+#selection sort
+def select():
+    global array
+    out =[]
+    #loop until the start array is empty
+    while len(array)>0:
+        minimum = array[0]
+        #find smallest item and added to the end array
+        for i in array:
+            if i < minimum:
+                minimum = i
+        out.append(minimum)
+        array.remove(minimum)
+    print(out)
 
 #bogo sort
 def bogo():
+    pass
+#sudo bogo sort
+def sudo_bogo():
     pass
     #comming soon
 
@@ -143,7 +176,7 @@ def pancake():
 
 
 srt()
-print(array)
+print(array, "unsorted")
 print()
-radix()
-print(sorted(array))
+bogo()
+print(sorted(og), "sorted")
