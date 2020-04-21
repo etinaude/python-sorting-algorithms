@@ -1,3 +1,17 @@
+'''
+    each algorith is in a function which prints a sorted array (ill change it to return)
+    there are notes before each algorithm explaining it
+
+    n = number of elements to sort
+    d = number of digits in the largest element
+    r = range of elements (largest - smallest)
+    k = size of key
+
+    the best, average and worst shows the trend of how each algorith will perform when increasing these values.
+
+    I will continue improving this and adding new algorithms
+'''
+
 from random import seed
 from random import random
 from random import randint
@@ -28,8 +42,26 @@ def store(data):
     with open('outfile', 'wb') as fp:
         pickle.dump(data, fp)
 
+
+
 #bubble sort
 def bubble():
+    '''
+        Overview:
+            swap conscutive numbers until its sorted
+        Best:
+            n
+        Average:
+            n^2
+        Worst:
+            n^2
+        Stable:
+            Yes
+        Comparision:
+            Yes
+        Uses:
+            Don't use it unless you are teaching the basics of sorting
+    '''
     global size, array, rng, out, count
     #big loop
     for i in range(0, size-1):
@@ -44,6 +76,22 @@ def bubble():
 
 #counting sort
 def counting():
+    '''
+        Overview:
+            count the numbers of items places before the place of each item
+        Best:
+            n+r
+        Average:
+            n+r
+        Worst:
+            n+r
+        Stable:
+            Yes
+        Comparision:
+            No
+        Uses:
+            Very good sort for integers, esspcailly if the data set has a small range
+    '''
     global size, array, rng, out, count
     total = [0]
     #count frequency
@@ -62,6 +110,24 @@ def counting():
     
 #quick sort
 def quick(arrays,within = False):
+    '''
+        Overview:
+            Pivot items around 
+        Best:
+            n*log(n)
+        Average:
+            n*log(n)
+        Worst:
+            n^2
+        Stable:
+            no
+        Comparision:
+            yes
+        Uses:
+            good general algorithm, slower than merge sort on average but uses less space (usually)
+        Notes: 
+            I need to improve this
+    '''
     low = []
     high = []
     # end recurssion
@@ -88,6 +154,24 @@ def quick(arrays,within = False):
 
 #radix sort
 def radix():
+    '''
+        Overview:
+            Sort based on each digit of an integer
+        Best:
+            n*(k/d)
+        Average:
+            n*(k/d)
+        Worst:
+            n*(k/d)
+        Stable:
+            Yes
+        Comparision:
+            No
+        Uses:
+            Very good sort for integers, esspcailly if the numbers have few digits
+        Notes: 
+            this is a LSD radix I might add a MSD later 
+    '''
     global array, rng
     #find the number of iterations
     num = math.ceil(math.log10(rng))
@@ -108,13 +192,24 @@ def radix():
     
     print(array)
 
-#merge sort
-def merge_sort():
-    pass
-    #comming soon
-
 #insertion sort
 def insertion():
+    '''
+        Overview:
+            Insert each number into its correct place
+        Best:
+            n
+        Average:
+            n^2
+        Worst:
+            n^2
+        Stable:
+            Yes
+        Comparision:
+            yes
+        Uses:
+            not great, easy to code use block sort instead if you need it to be stable and are short on memory
+    '''
     global array
     out =[array[0]]
     #loop through orginal array
@@ -133,6 +228,22 @@ def insertion():
 
 #selection sort
 def select():
+    '''
+        Overview:
+            Select the smallest item one by one
+        Best:
+            n^2
+        Average:
+            n^2
+        Worst:
+            n^2
+        Stable:
+            No
+        Comparision:
+            Yes
+        Uses:
+            Don't, its similar to insertion sort but worse since best is worse and its not stable
+    '''
     global array
     out =[]
     #loop until the start array is empty
@@ -148,6 +259,24 @@ def select():
 
 #bogo sort
 def bogo():
+    '''
+        Overview:
+            Pick random orders in the hope that one will work
+        Best:
+            n
+        Average:
+            n*n!
+        Worst:
+            FOREVER!!!
+        Stable:
+            No
+        Comparision:
+            kinda of
+        Uses:
+            MEMES!, its closer to shuffling than a good sorting algoritm
+        notes:
+            It can go on forever so dont use it unless you are trying to show what not to do
+    '''
     # WARNING this can take a LONG time only run with fewer than 10 items to sort
     global array
     cont =True 
@@ -173,6 +302,11 @@ def bogo():
     
 #sudo bogo sort
 def sudo_bogo():
+    pass
+    #comming soon
+
+#merge sort
+def merge_sort():
     pass
     #comming soon
 
