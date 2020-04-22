@@ -90,12 +90,9 @@ def counting(array):
     count = [0]
     out = [0]
     big = array[0]
-    small = array[0]
     for i in array:
         if i > big:
             big = i
-        if i < small:
-            small = i
         out.append(0)
     rng = big
     for i in range(rng):
@@ -158,7 +155,7 @@ def quick(array):
     return array
 
 #radix sort
-def radix():
+def radix(array):
     '''
         Overview:
             Sort based on each digit of an integer
@@ -177,7 +174,11 @@ def radix():
         Notes: 
             this is a LSD radix I might add a MSD later 
     '''
-    global array, rng
+    big = array[0]
+    for i in array:
+        if i > big:
+            big = i
+    rng = big
     #find the number of iterations
     num = math.ceil(math.log10(rng))
     #loop for each digit
@@ -335,5 +336,5 @@ def pancake():
 srt()
 print(array, "unsorted")
 print()
-print(bubble(array))
+print(radix(array))
 print(sorted(og), "sorted")
