@@ -303,32 +303,32 @@ def bogo(array):
     
     
 #sudo bogo sort
-def sudo_bogo():
+def sudo_bogo(array):
     pass
     #comming soon
 
 #merge sort
-def merge_sort():
+def merge_sort(array):
     pass
     #comming soon
 
 #pigeonhole sort
-def pigeonhole():
+def pigeonhole(array):
     pass
     #comming soon
 
 #tim sort
-def tim():
+def tim(array):
     pass
     #comming soon
 
 #heap sort
-def heap():
+def heap(array):
     pass
     #comming soon
 
 #pancake sort
-def pancake():
+def pancake(array):
     pass
     #comming soon
 
