@@ -23,8 +23,8 @@ please feel free to add and edit
 
 ## notes
 
-each algorith is in a function which prints a sorted array (ill change it to return)\
-there are notes before each algorithm explaining it
+Each algorithm is in a function which takes only an unsorted array as a parameter returns the sorted array\
+There are notes before each algorithm explaining it.
 
 * n = number of elements to sort
 * d = number of digits in the largest element

@@ -1,5 +1,5 @@
 '''
-    each algorith is in a function which prints a sorted array (ill change it to return)
+    each algorithm is in a function which takes only an unsorted array as a parameter returns the sorted array
     there are notes before each algorithm explaining it
 
     n = number of elements to sort
@@ -130,7 +130,7 @@ def quick(array):
         Uses:
             good general algorithm, slower than merge sort on average but uses less space (usually)
         Notes: 
-            I need to improve this
+            I need to improve this, it is implemented through a merge technique but uses quick sort to split
     '''
     low = []
     high = []
@@ -147,9 +147,9 @@ def quick(array):
             else:
                 high.append(i)
     #quick sort low items
-    low = quick(low, True)
+    low = quick(low)
     #quick sort high items
-    high = quick(high,True)
+    high = quick(high)
     array = low + [pivot]+high
     #if its fully sorted print the array
     return array
@@ -336,5 +336,5 @@ def pancake():
 srt()
 print(array, "unsorted")
 print()
-print(radix(array))
+print(quick(array))
 print(sorted(og), "sorted")
