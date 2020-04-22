@@ -20,22 +20,17 @@ import pickle
 import math
 
 array = []
-size = 10
-count =[0]
-out =[0]
-rng = 10
 og=[]
 
 #intialize
 def srt():
-    global size, array, rng, out, count, og
+    global og
+    size = 10
+    rng = 100
     for i in range(size):
         num = randint(1,rng)
         array.append(num)
         og.append(num)
-    for i in range(rng):
-        count.append(0)
-        out.append(0)
 
 #store data
 def store(data):
@@ -45,7 +40,7 @@ def store(data):
 
 
 #bubble sort
-def bubble():
+def bubble(array):
     '''
         Overview:
             swap conscutive numbers until its sorted
@@ -62,20 +57,19 @@ def bubble():
         Uses:
             Don't use it unless you are teaching the basics of sorting
     '''
-    global size, array, rng, out, count
     #big loop
-    for i in range(0, size-1):
+    for i in range(len(array)-1):
         #small loop
-        for j in range(0, size-1):
+        for j in range(len(array)-1):
             #check and perform swap
             if array[j] > array[j+1]:
              temp = array[j]
              array[j] = array[j+1]
              array[j+1] = temp
-    print(array)
+    return(array)
 
 #counting sort
-def counting():
+def counting(array):
     '''
         Overview:
             count the numbers of items places before the place of each item
@@ -92,24 +86,37 @@ def counting():
         Uses:
             Very good sort for integers, esspcailly if the data set has a small range
     '''
-    global size, array, rng, out, count
     total = [0]
+    count = [0]
+    out = [0]
+    big = array[0]
+    small = array[0]
+    for i in array:
+        if i > big:
+            big = i
+        if i < small:
+            small = i
+        out.append(0)
+    rng = big
+    for i in range(rng):
+        count.append(0)
+        
     #count frequency
-    for i in range(size):
+    for i in range(len(array)):
         count[array[i]] += 1
     total[0]=count[0]
     #add frequency
-    for i in range(1,rng+1):
+    for i in range(1,rng):
         total.append(count[i]+total[i-1])
     total[0]=0
     #insert into final array
     for i in array:
         out[total[i-1]] = i
         total[i-1] += 1
-    print(out[:-1])
+    return(out[:-1])
     
 #quick sort
-def quick(arrays,within = False):
+def quick(array):
     '''
         Overview:
             Pivot items around 
@@ -131,13 +138,13 @@ def quick(arrays,within = False):
     low = []
     high = []
     # end recurssion
-    if len(arrays) <= 1:
-        return arrays
+    if len(array) <= 1:
+        return array
     else:
         #set pivot
-        pivot = arrays[0]
+        pivot = array[0]
         #seperate items
-        for i in arrays[1:]:
+        for i in array[1:]:
             if i<pivot:
                 low.append(i)
             else:
@@ -146,11 +153,9 @@ def quick(arrays,within = False):
     low = quick(low, True)
     #quick sort high items
     high = quick(high,True)
-    arrays = low + [pivot]+high
+    array = low + [pivot]+high
     #if its fully sorted print the array
-    if within == False:
-            print(arrays)
-    return arrays
+    return array
 
 #radix sort
 def radix():
@@ -190,10 +195,10 @@ def radix():
         for k in buckets:
             array.extend(k)
     
-    print(array)
+    return(array)
 
 #insertion sort
-def insertion():
+def insertion(array):
     '''
         Overview:
             Insert each number into its correct place
@@ -210,7 +215,6 @@ def insertion():
         Uses:
             not great, easy to code use block sort instead if you need it to be stable and are short on memory
     '''
-    global array
     out =[array[0]]
     #loop through orginal array
     for i in array[1:]:
@@ -224,10 +228,10 @@ def insertion():
             out.append(i)
         else:
             out.insert(j,i)
-    print(out)
+    return(out)
 
 #selection sort
-def select():
+def select(array):
     '''
         Overview:
             Select the smallest item one by one
@@ -244,7 +248,6 @@ def select():
         Uses:
             Don't, its similar to insertion sort but worse since best is worse and its not stable
     '''
-    global array
     out =[]
     #loop until the start array is empty
     while len(array)>0:
@@ -255,10 +258,10 @@ def select():
                 minimum = i
         out.append(minimum)
         array.remove(minimum)
-    print(out)
+    return(out)
 
 #bogo sort
-def bogo():
+def bogo(array):
     '''
         Overview:
             Pick random orders in the hope that one will work
@@ -278,7 +281,6 @@ def bogo():
             It can go on forever so dont use it unless you are trying to show what not to do
     '''
     # WARNING this can take a LONG time only run with fewer than 10 items to sort
-    global array
     cont =True 
     #loop until the array is sorted
     while cont == True:
@@ -296,8 +298,7 @@ def bogo():
                     cont = True
                     break
         array = []+out
-    
-    print(out)
+    return(out)
     
     
 #sudo bogo sort
@@ -334,5 +335,5 @@ def pancake():
 srt()
 print(array, "unsorted")
 print()
-merge_sort()
+print(bubble(array))
 print(sorted(og), "sorted")
