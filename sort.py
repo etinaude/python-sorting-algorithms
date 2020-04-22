@@ -37,8 +37,6 @@ def store(data):
     with open('outfile', 'wb') as fp:
         pickle.dump(data, fp)
 
-
-
 #bubble sort
 def bubble(array):
     '''
@@ -302,6 +300,8 @@ def bogo(array):
     return(out)
     
     
+#------not yet implimented----
+
 #sudo bogo sort
 def sudo_bogo(array):
     pass
@@ -331,6 +331,32 @@ def heap(array):
 def pancake(array):
     pass
     #comming soon
+
+def Bozosort():
+    #NO, just dont use this
+    pass
+
+def Intelligent_Design_Sort():
+    #https://www.dangermouse.net/esoteric/intelligentdesignsort.html
+    pass
+
+def abacus():
+    #https://www.dangermouse.net/esoteric/abacussort.html
+    pass
+
+def sleep():
+    pass
+
+def jinglesort():
+    #https://www.youtube.com/watch?v=kbzIbvWsDb0
+    
+    pass
+
+def MiracleSort():
+    #https://stackoverflow.com/questions/2609857/are-there-any-worse-sorting-algorithms-than-bogosort-a-k-a-monkey-sort
+    pass
+
+
 
 
 srt()
