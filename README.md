@@ -33,25 +33,25 @@ please feel free to add and edit
 
 * Sudo bogo sort
 * bozo sort
-* mirical sort
+* miracle sort
 * sleep sort
-* intelegent design sort
+* intelligent design sort
 * jingle sort
 * bogobogo sort
-* spagetti sort
+* spaghetti sort
 * stooge
 * rolling stone sort(physics engine required)
-* Threating Sort (with deleting a random file each time)
+* Threatening Sort (with deleting a random file each time)
 * slow sort
 * worst sort
 * Linus
 
 ### my own algorithms:
 
-* Sassy sort (telss you to sort it your own damn self)
+* Sassy sort (tells you to sort it your own damn self)
 * lls{low level sort} sorts based on -1 to each value and ordering base on which reaches 0 first (only positive ints)
-* reddit sort (post it on reddit and take the top reply as fact)
-* meme sort (sort based on proxmity to the numbers 69 and 420)
+* Reddit sort (post it on Reddit and take the top reply as fact)
+* meme sort (sort based on proximity to the numbers 69 and 420)
 * combo sort (sorts with 5 algorithms to make sure its correct)
 
 ## notes
@@ -64,7 +64,7 @@ There are notes before each algorithm explaining it.
 * r = range of elements (largest - smallest)
 * k = size of key
 
-the best, average and worst shows the trend of how each algorith will perform when increasing these values.\
+the best, average and worst shows the trend of how each algorithm will perform when increasing these values.\
 I will continue improving this and adding new algorithms
 
 * https://xkcd.com/1185/
