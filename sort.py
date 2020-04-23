@@ -25,7 +25,7 @@ og=[]
 #intialize
 def srt():
     global og
-    size = 10
+    size = 100
     rng = 100
     for i in range(size):
         num = randint(1,rng)
@@ -299,16 +299,53 @@ def bogo(array):
         array = []+out
     return(out)
     
-    
+    #merge sort
+
+#merge sort
+def merge(array):
+    '''
+        Overview:
+            splits into smaller and smaller groups and merges them back together in order
+        Best:
+            nlong(n)
+        Average:
+            nlog(n)
+        Worst:
+            nlog(n)
+        Stable:
+            yes
+        Comparision:
+            yes
+        Uses:
+            Very good general sorting algorithm
+        notes:
+            one of the most commonly used sorting algorithms
+    '''
+    out=[]
+    if len(array) <= 1:
+        return array
+    else:
+        start = merge_sort(array[len(array)//2:])
+        end = merge_sort(array[:len(array)//2])
+        while len(start)+len(end) >=1:
+            if len(start) == 0:
+                out.extend(end)
+                break
+            if len(end) == 0:
+                out.extend(start)
+                break
+            if start[0] < end[0]:
+                out.append(start[0])
+                start = start[1:]
+            else:
+                out.append(end[0])
+                end = end[1:]
+        return out
+            
 #------not yet implimented----
 
 #sudo bogo sort
 def sudo_bogo(array):
-    pass
-    #comming soon
-
-#merge sort
-def merge_sort(array):
     pass
     #comming soon
 
@@ -362,5 +399,5 @@ def MiracleSort():
 srt()
 print(array, "unsorted")
 print()
-print(quick(array))
+print(merge_sort(array))
 print(sorted(og), "sorted")

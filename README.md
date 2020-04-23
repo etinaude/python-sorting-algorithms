@@ -10,6 +10,7 @@ please feel free to add and edit
 * Radix sort
 * Insertion sort
 * Selection sort
+* merge sort
   
 ### esoteric sorts:
 
@@ -18,7 +19,6 @@ please feel free to add and edit
 ## These will be added:
 
 * Pancake sort
-* merge sort
 * Pigeonhole sort
 * Tim sort
 * Heap sort
