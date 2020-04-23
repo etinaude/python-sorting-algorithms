@@ -25,6 +25,8 @@ please feel free to add and edit
 * LSD radix
 * no extra space radix
 * bucket sort
+* cocktail sort
+* sorting network
 
 
 ### esoteric sorts:
@@ -43,6 +45,14 @@ please feel free to add and edit
 * slow sort
 * worst sort
 * Linus
+
+### my own algorithms:
+
+* Sassy sort (telss you to sort it your own damn self)
+* lls{low level sort} sorts based on -1 to each value and ordering base on which reaches 0 first (only positive ints)
+* reddit sort (post it on reddit and take the top reply as fact)
+* meme sort (sort based on proxmity to the numbers 69 and 420)
+* combo sort (sorts with 5 algorithms to make sure its correct)
 
 ## notes
 
