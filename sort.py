@@ -26,7 +26,7 @@ og=[]
 #intialize
 def srt():
     global og
-    size = 100
+    size = 10
     rng = 100
     for i in range(size):
         num = randint(1,rng)
@@ -541,6 +541,46 @@ def sassy(array):
     '''
     return "sort it your own damn self!"
 
+def totally_original_sort(array):
+    """eh ill look what python uses later"""
+    return sorted(array)
+
+def meme(array):
+    '''
+        Overview:
+            Selection sort based on proximity to the numbers 69 and 420
+        Best:
+            n^2
+        Average:
+            n^2
+        Worst:
+            n^2
+        Stable:
+            No
+        Comparision:
+            Yes
+        Uses:
+            always use this
+    '''
+    out=[]
+    prox = [0]*len(array)
+    for i in range(len(array)):
+        if abs(array[i]-420) < abs(array[i]-69):
+            prox[i] = abs(array[i]-420)
+        else:
+            prox[i] = abs(array[i]-69)
+
+    while len(array)>0:
+        minimum = 0
+        #find smallest item and added to the end array
+        for i in range(len(prox)):
+            if prox[i] < prox[minimum]:
+                minimum = i
+        out.append(array[minimum])
+        array.pop(minimum)
+        prox.pop(minimum)
+    return(out)
+
 #------not yet implimented----#
 
 def sudo_bogo(array):
@@ -580,5 +620,5 @@ def jinglesort():
 srt()
 print(array, "unsorted")
 print()
-print(sassy(array))
+print(meme(array))
 print(sorted(og), "sorted")

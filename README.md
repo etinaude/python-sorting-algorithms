@@ -19,11 +19,12 @@ please feel free to add and edit
 * intelligent design sort
 * miracle sort/solarbit flip sort
 * stalin sort
-* Threatening Sort **DO NOT EVEN THINK ABOU USING THIS**
+* Threatening Sort **DO NOT EVEN THINK ABOUT USING THIS**
 
 ### my own algorithms:
 
 * Sassy sort (tells you to sort it your own damn self)
+* meme sort (sort based on proximity to the numbers 69 and 420)
 
 ## These will be added:
 
@@ -54,7 +55,6 @@ please feel free to add and edit
 
 * lls{low level sort} sorts based on -1 to each value and ordering base on which reaches 0 first (only positive ints)
 * Reddit sort (post it on Reddit and take the top reply as fact)
-* meme sort (sort based on proximity to the numbers 69 and 420)
 * combo sort (sorts with 5 algorithms to make sure its correct)
 * 5 stages of grief sort
 
