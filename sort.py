@@ -25,8 +25,8 @@ og=[]
 #intialize
 def srt():
     global og
-    size = 100
-    rng = 100
+    size = 10
+    rng = 10
     for i in range(size):
         num = randint(1,rng)
         array.append(num)
@@ -325,8 +325,8 @@ def merge(array):
     if len(array) <= 1:
         return array
     else:
-        start = merge_sort(array[len(array)//2:])
-        end = merge_sort(array[:len(array)//2])
+        start = merge(array[len(array)//2:])
+        end = merge(array[:len(array)//2])
         while len(start)+len(end) >=1:
             if len(start) == 0:
                 out.extend(end)
@@ -342,7 +342,57 @@ def merge(array):
                 end = end[1:]
         return out
             
-#------not yet implimented----
+#heap sort
+def heap(array): 
+    '''
+        Overview:
+            sorts by creating a max heap continously and removing the root
+        Best:
+            nlong(n)
+        Average:
+            nlog(n)
+        Worst:
+            nlog(n)
+        Stable:
+            no
+        Comparision:
+            yes
+        Uses:
+            good general sorting algorithm
+    '''
+    out = []
+    #create initail heap
+    for i in range(int(len(array)/2) - 1, -1, -1): 
+        array = heapify(array, i) 
+
+    # removed sorted elements
+    for i in range(int(len(array))-1, 0, -1): 
+        out.append(array[0])
+        array = array[1:]
+        array = heapify(array) 
+    out.append(array[0])
+    return out[::-1]
+
+#igore needed in heap sort
+def heapify(array, i=0): 
+    large = i
+    left = 2 * i + 1
+    right = 2 * i + 2 
+    #test if children need to be swapped
+    if left < len(array) and array[i] < array[left]: 
+        large = left 
+    if right < len(array) and array[large] < array[right]: 
+        large = right 
+    #swap root
+    if large != i: 
+        temp = array[i]
+        array[i] = array[large]
+        array[large] = temp
+        heapify(array, large) 
+    return array
+
+
+#------not yet implimented----#
 
 #sudo bogo sort
 def sudo_bogo(array):
@@ -356,11 +406,6 @@ def pigeonhole(array):
 
 #tim sort
 def tim(array):
-    pass
-    #comming soon
-
-#heap sort
-def heap(array):
     pass
     #comming soon
 
@@ -386,7 +431,6 @@ def sleep():
 
 def jinglesort():
     #https://www.youtube.com/watch?v=kbzIbvWsDb0
-    
     pass
 
 def MiracleSort():
@@ -399,5 +443,5 @@ def MiracleSort():
 srt()
 print(array, "unsorted")
 print()
-print(merge_sort(array))
+print(heap(array))
 print(sorted(og), "sorted")

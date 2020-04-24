@@ -11,6 +11,7 @@ please feel free to add and edit
 * Insertion sort
 * Selection sort
 * merge sort
+* Heap sort
   
 ### esoteric sorts:
 
@@ -21,7 +22,6 @@ please feel free to add and edit
 * Pancake sort
 * Pigeonhole sort
 * Tim sort
-* Heap sort
 * LSD radix
 * no extra space radix
 * bucket sort
@@ -53,6 +53,7 @@ please feel free to add and edit
 * Reddit sort (post it on Reddit and take the top reply as fact)
 * meme sort (sort based on proximity to the numbers 69 and 420)
 * combo sort (sorts with 5 algorithms to make sure its correct)
+* 5 stages of grief sort
 
 ## notes
 
