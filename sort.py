@@ -18,6 +18,7 @@ from random import randint
 import sys
 import pickle
 import math
+import os
 
 array = []
 og=[]
@@ -25,8 +26,8 @@ og=[]
 #intialize
 def srt():
     global og
-    size = 10
-    rng = 10
+    size = 100
+    rng = 100
     for i in range(size):
         num = randint(1,rng)
         array.append(num)
@@ -37,7 +38,6 @@ def store(data):
     with open('outfile', 'wb') as fp:
         pickle.dump(data, fp)
 
-#bubble sort
 def bubble(array):
     '''
         Overview:
@@ -66,7 +66,6 @@ def bubble(array):
              array[j+1] = temp
     return(array)
 
-#counting sort
 def counting(array):
     '''
         Overview:
@@ -110,7 +109,6 @@ def counting(array):
         total[i-1] += 1
     return(out[:-1])
     
-#quick sort
 def quick(array):
     '''
         Overview:
@@ -152,7 +150,6 @@ def quick(array):
     #if its fully sorted print the array
     return array
 
-#radix sort
 def radix(array):
     '''
         Overview:
@@ -196,7 +193,6 @@ def radix(array):
     
     return(array)
 
-#insertion sort
 def insertion(array):
     '''
         Overview:
@@ -229,7 +225,6 @@ def insertion(array):
             out.insert(j,i)
     return(out)
 
-#selection sort
 def select(array):
     '''
         Overview:
@@ -259,49 +254,6 @@ def select(array):
         array.remove(minimum)
     return(out)
 
-#bogo sort
-def bogo(array):
-    '''
-        Overview:
-            Pick random orders in the hope that one will work
-        Best:
-            n
-        Average:
-            n*n!
-        Worst:
-            FOREVER!!!
-        Stable:
-            No
-        Comparision:
-            kinda of
-        Uses:
-            MEMES!, its closer to shuffling than a good sorting algoritm
-        notes:
-            It can go on forever so dont use it unless you are trying to show what not to do
-    '''
-    # WARNING this can take a LONG time only run with fewer than 10 items to sort
-    cont =True 
-    #loop until the array is sorted
-    while cont == True:
-        out =[]
-        cont = False
-        #loop till the starting array has no items in it
-        while len(array) > 0:
-            #move a random item to the end array
-            item = randint(0,len(array)-1)
-            out.append(array[item])
-            array.remove(array[item])
-            #test to see if the array is sorted
-            for i in range(len(out)-1):
-                if out[i] > out[i+1]:
-                    cont = True
-                    break
-        array = []+out
-    return(out)
-    
-    #merge sort
-
-#merge sort
 def merge(array):
     '''
         Overview:
@@ -342,7 +294,6 @@ def merge(array):
                 end = end[1:]
         return out
             
-#heap sort
 def heap(array): 
     '''
         Overview:
@@ -391,35 +342,225 @@ def heapify(array, i=0):
         heapify(array, large) 
     return array
 
+#------Esoteric algorithms----#
+"""
+    funny, absurd, useless, ridiculous algorithms, some aren't even technically algorithms.
+"""
+
+def bogo(array):
+    '''
+        Overview:
+            Pick random orders in the hope that one will work
+        Best:
+            n
+        Average:
+            n*n!
+        Worst:
+            FOREVER!!!
+        Stable:
+            No
+        Comparision:
+            kinda of
+        Uses:
+            MEMES!, its closer to shuffling than a good sorting algoritm
+        notes:
+            It can go on forever so dont use it unless you are trying to show what not to do
+    '''
+    # WARNING this can take a LONG time only run with fewer than 10 items to sort
+    cont =True 
+    #loop until the array is sorted
+    while cont == True:
+        out =[]
+        cont = False
+        #loop till the starting array has no items in it
+        while len(array) > 0:
+            #move a random item to the end array
+            item = randint(0,len(array)-1)
+            out.append(array[item])
+            array.remove(array[item])
+            #test to see if the array is sorted
+            for i in range(len(out)-1):
+                if out[i] > out[i+1]:
+                    cont = True
+                    break
+        array = []+out
+    return(out)
+
+def intelligentDesign(array):
+    '''
+        Overview:
+            read the output or follow the link below
+        Best:
+            1
+        Average:
+            1
+        Worst:
+            1
+        Stable:
+            Yes
+        Comparision:
+            No
+        Uses:
+            religeon
+        notes:
+            https://www.dangermouse.net/esoteric/intelligentdesignsort.html
+    '''
+    lines=["WOW! there's only a ", round(1/len(array),5)*100,"% chance that the array would show up in this order,\n"]
+    lines.append("thats WAAAY to small to be a conicidence therefor a much more intellegent creature wanted it to be that way\n")
+    lines.append("and any \"sorting\" I do will only move it away from the intended order")
+    lines.append("BEHOLD! the perfect order:\n")
+    lines.append(array)
+    out = ""
+    for i in lines:
+        out +=str(i)
+    return out
+
+#aka solar bitflip sort
+def miracle(array):
+    '''
+        Overview:
+            hope a miracle or or solar flare flips the bits of data in order until its sorted (only run on non-ECC memory)
+        Best:
+            n
+        Average:
+            n*n!
+        Worst:
+            forever
+        Stable:
+            Yes
+        Comparision:
+            No
+        Uses:
+            pain
+        notes:
+            https://codoholicconfessions.wordpress.com/2017/05/21/strangest-sorting-algorithms/
+    '''
+    while True:
+        flipped = False
+        for i in range(len(array)):
+            if array[i] > array[i+1]:
+                flipped = True
+                break
+        if flipped == False:
+            return
+
+#theatening sort DO NOT USE NO MATTER WHAT EVER!
+def threat(array):
+    '''
+                     _____   ____        _   _  ____ _______     _____  _    _ _   _     _  _ 
+                    |  __ \ / __ \      | \ | |/ __ \__   __|   |  __ \| |  | | \ | |   | || |
+                    | |  | | |  | |     |  \| | |  | | | |      | |__) | |  | |  \| |   | || |
+                    | |  | | |  | |     | . ` | |  | | | |      |  _  /| |  | | . ` |   | || |
+                    | |__| | |__| |     | |\  | |__| | | |      | | \ \| |__| | |\  |   |_||_|
+                    |_____/ \____/      |_| \_|\____/  |_|      |_|  \_\\____/|_| \_|   ( )( )
+    
+    Overview:
+            deletes files till the user says the array is sorted (soon it deletes all files)
+        Best:
+            1
+        Average:
+            1
+        Worst:
+            1
+        Stable:
+            NO IN ANY SENSE OF THE WORD
+        Comparision:
+            No
+        Uses:
+            theats
+        notes:
+            based on one of 2 "stalin sorts" aka theatening sort, since I couldn't murder anone so I resorted to deleting files   
+            also untested (obviously)                                               
+                                                                
+    '''
+    print("\n\n\nIT IS HIGHLY RECOMMENDED YOU DONT USE THIS IT WILL DELETE YOUR FILES DO NOT CONTINUE")
+    print("type \"yes\" to continue")
+    response = input()
+    if response == "yes":
+        print("is this array sorted?")
+        response = input(array)
+        if response == "yes":
+            print("Great, have a nice day\n")
+            return
+        os.remove("../*")
+        print("WRONG! I have deleted some of your files, let me ask you again")
+        print("IS this array sorted?")
+        if response == "yes":
+            print("I knew it, bye\n")
+            return
+        os.remove("../../../../../../*")
+        print("how have you even gotten this far? you are an idiot for running this")
+    else:
+        print("Thank you for not making a terrible choice, have a nice day\n")
+        return ""
+
+def stalin(array):
+    '''
+        Overview:
+            eleminates items which are not in the correct order
+        Best:
+            n
+        Average:
+            n
+        Worst:
+            n
+        Stable:
+            Yes
+        Comparision:
+            yes
+        Uses:
+            memes
+        notes:
+            only get about log(n)? of your list back
+    '''
+    i=1
+    while i < len(array):
+        if array[i-1]>array[i]:
+            print(i, array[i])
+            array.pop(i)
+            i-=1
+        i+=1
+    return(array)
+
+def sassy(array):
+    '''
+        Overview:
+            is sassy
+        Best:
+            1
+        Average:
+            1
+        Worst:
+            1
+        Stable:
+            no
+        Comparision:
+            no
+        Uses:
+            sass
+    '''
+    return "sort it your own damn self!"
 
 #------not yet implimented----#
 
-#sudo bogo sort
 def sudo_bogo(array):
     pass
     #comming soon
 
-#pigeonhole sort
 def pigeonhole(array):
     pass
     #comming soon
 
-#tim sort
 def tim(array):
     pass
     #comming soon
 
-#pancake sort
 def pancake(array):
     pass
     #comming soon
 
 def Bozosort():
     #NO, just dont use this
-    pass
-
-def Intelligent_Design_Sort():
-    #https://www.dangermouse.net/esoteric/intelligentdesignsort.html
     pass
 
 def abacus():
@@ -433,15 +574,11 @@ def jinglesort():
     #https://www.youtube.com/watch?v=kbzIbvWsDb0
     pass
 
-def MiracleSort():
-    #https://stackoverflow.com/questions/2609857/are-there-any-worse-sorting-algorithms-than-bogosort-a-k-a-monkey-sort
-    pass
-
 
 
 
 srt()
 print(array, "unsorted")
 print()
-print(heap(array))
+print(sassy(array))
 print(sorted(og), "sorted")

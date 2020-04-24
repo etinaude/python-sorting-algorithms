@@ -16,6 +16,14 @@ please feel free to add and edit
 ### esoteric sorts:
 
 * Bogo sort
+* intelligent design sort
+* miracle sort/solarbit flip sort
+* stalin sort
+* Threatening Sort **DO NOT EVEN THINK ABOU USING THIS**
+
+### my own algorithms:
+
+* Sassy sort (tells you to sort it your own damn self)
 
 ## These will be added:
 
@@ -28,27 +36,22 @@ please feel free to add and edit
 * cocktail sort
 * sorting network
 
-
 ### esoteric sorts:
 
 * Sudo bogo sort
 * bozo sort
-* miracle sort
 * sleep sort
-* intelligent design sort
 * jingle sort
 * bogobogo sort
 * spaghetti sort
 * stooge
 * rolling stone sort(physics engine required)
-* Threatening Sort (with deleting a random file each time)
 * slow sort
 * worst sort
 * Linus
 
 ### my own algorithms:
 
-* Sassy sort (tells you to sort it your own damn self)
 * lls{low level sort} sorts based on -1 to each value and ordering base on which reaches 0 first (only positive ints)
 * Reddit sort (post it on Reddit and take the top reply as fact)
 * meme sort (sort based on proximity to the numbers 69 and 420)
