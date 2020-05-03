@@ -12,6 +12,7 @@ please feel free to add and edit
 * Selection sort
 * merge sort
 * Heap sort
+* Pancake sort
   
 ### esoteric sorts:
 
@@ -28,7 +29,6 @@ please feel free to add and edit
 
 ## These will be added:
 
-* Pancake sort
 * Pigeonhole sort
 * Tim sort
 * LSD radix

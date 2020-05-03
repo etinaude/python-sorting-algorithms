@@ -21,22 +21,27 @@ import math
 import os
 
 array = []
-og=[]
+og = []
 
-#intialize
+# intialize
+
+
 def srt():
     global og
     size = 10
     rng = 100
     for i in range(size):
-        num = randint(1,rng)
+        num = randint(1, rng)
         array.append(num)
         og.append(num)
 
-#store data
+# store data
+
+
 def store(data):
     with open('outfile', 'wb') as fp:
         pickle.dump(data, fp)
+
 
 def bubble(array):
     '''
@@ -55,16 +60,17 @@ def bubble(array):
         Uses:
             Don't use it unless you are teaching the basics of sorting
     '''
-    #big loop
+    # big loop
     for i in range(len(array)-1):
-        #small loop
+        # small loop
         for j in range(len(array)-1):
-            #check and perform swap
+            # check and perform swap
             if array[j] > array[j+1]:
-             temp = array[j]
-             array[j] = array[j+1]
-             array[j+1] = temp
+                temp = array[j]
+                array[j] = array[j+1]
+                array[j+1] = temp
     return(array)
+
 
 def counting(array):
     '''
@@ -94,21 +100,22 @@ def counting(array):
     rng = big
     for i in range(rng):
         count.append(0)
-        
-    #count frequency
+
+    # count frequency
     for i in range(len(array)):
         count[array[i]] += 1
-    total[0]=count[0]
-    #add frequency
-    for i in range(1,rng):
+    total[0] = count[0]
+    # add frequency
+    for i in range(1, rng):
         total.append(count[i]+total[i-1])
-    total[0]=0
-    #insert into final array
+    total[0] = 0
+    # insert into final array
     for i in array:
         out[total[i-1]] = i
         total[i-1] += 1
     return(out[:-1])
-    
+
+
 def quick(array):
     '''
         Overview:
@@ -134,21 +141,22 @@ def quick(array):
     if len(array) <= 1:
         return array
     else:
-        #set pivot
+        # set pivot
         pivot = array[0]
-        #seperate items
+        # seperate items
         for i in array[1:]:
-            if i<pivot:
+            if i < pivot:
                 low.append(i)
             else:
                 high.append(i)
-    #quick sort low items
+    # quick sort low items
     low = quick(low)
-    #quick sort high items
+    # quick sort high items
     high = quick(high)
     array = low + [pivot]+high
-    #if its fully sorted print the array
+    # if its fully sorted print the array
     return array
+
 
 def radix(array):
     '''
@@ -174,24 +182,25 @@ def radix(array):
         if i > big:
             big = i
     rng = big
-    #find the number of iterations
+    # find the number of iterations
     num = math.ceil(math.log10(rng))
-    #loop for each digit
-    for i in range(num,0,-1):
-        buckets =[[],[],[],[],[],[],[],[],[],[]]
-        #seperate into similar digit arrays
+    # loop for each digit
+    for i in range(num, 0, -1):
+        buckets = [[], [], [], [], [], [], [], [], [], []]
+        # seperate into similar digit arrays
         for j in array:
             stringz = str(j)
-            #format the number correctly
-            if num>len(stringz):
-                stringz = (num-len(stringz))*"0" +stringz 
+            # format the number correctly
+            if num > len(stringz):
+                stringz = (num-len(stringz))*"0" + stringz
             buckets[int(stringz[i-1:i])].append(j)
         array = []
-        #add numbers back into the orginal array
+        # add numbers back into the orginal array
         for k in buckets:
             array.extend(k)
-    
+
     return(array)
+
 
 def insertion(array):
     '''
@@ -210,20 +219,21 @@ def insertion(array):
         Uses:
             not great, easy to code use block sort instead if you need it to be stable and are short on memory
     '''
-    out =[array[0]]
-    #loop through orginal array
+    out = [array[0]]
+    # loop through orginal array
     for i in array[1:]:
         j = 0
-        #give where to slot the item
+        # give where to slot the item
         while out[j] < i:
-            j+=1
+            j += 1
             if len(out) <= j:
                 break
         if len(out) <= j:
             out.append(i)
         else:
-            out.insert(j,i)
+            out.insert(j, i)
     return(out)
+
 
 def select(array):
     '''
@@ -242,17 +252,18 @@ def select(array):
         Uses:
             Don't, its similar to insertion sort but worse since best is worse and its not stable
     '''
-    out =[]
-    #loop until the start array is empty
-    while len(array)>0:
+    out = []
+    # loop until the start array is empty
+    while len(array) > 0:
         minimum = array[0]
-        #find smallest item and added to the end array
+        # find smallest item and added to the end array
         for i in array:
             if i < minimum:
                 minimum = i
         out.append(minimum)
         array.remove(minimum)
     return(out)
+
 
 def merge(array):
     '''
@@ -273,13 +284,13 @@ def merge(array):
         notes:
             one of the most commonly used sorting algorithms
     '''
-    out=[]
+    out = []
     if len(array) <= 1:
         return array
     else:
         start = merge(array[len(array)//2:])
         end = merge(array[:len(array)//2])
-        while len(start)+len(end) >=1:
+        while len(start)+len(end) >= 1:
             if len(start) == 0:
                 out.extend(end)
                 break
@@ -293,8 +304,9 @@ def merge(array):
                 out.append(end[0])
                 end = end[1:]
         return out
-            
-def heap(array): 
+
+
+def heap(array):
     '''
         Overview:
             sorts by creating a max heap continously and removing the root
@@ -312,40 +324,77 @@ def heap(array):
             good general sorting algorithm
     '''
     out = []
-    #create initail heap
-    for i in range(int(len(array)/2) - 1, -1, -1): 
-        array = heapify(array, i) 
+    # create initail heap
+    for i in range(int(len(array)/2) - 1, -1, -1):
+        array = heapify(array, i)
 
     # removed sorted elements
-    for i in range(int(len(array))-1, 0, -1): 
+    for i in range(int(len(array))-1, 0, -1):
         out.append(array[0])
         array = array[1:]
-        array = heapify(array) 
+        array = heapify(array)
     out.append(array[0])
     return out[::-1]
 
-#igore needed in heap sort
-def heapify(array, i=0): 
+
+def pancake(array):
+    '''
+        Overview:
+            out your spatual under the largest one and flip the stack of pancakes so the largest one is on top, then flip the unsorted ones upside down so the largest is at the bottom
+        Best:
+            between (15/14)n
+        Average:
+            1.5nish??
+        Worst:
+            (18/11)n
+        Stable:
+            No
+        Comparision:
+            yes
+        Uses:
+            DNA sorting in a "bacterial computer"
+        notes:
+            based on flipping pancakes, famous paper by Bill Gates, can use E. coli to flip DNA and sort it!
+    '''
+    length = len(array)
+    while length > 0:
+        large = 0
+        for i in range(length):
+            if array[i] > array[large]:
+                large = i
+
+        array = array[:large+1][::-1]+array[large+1:]
+        array = array[:length][::-1]+array[length:]
+        length -= 1
+
+    return(array)
+
+# igore needed in heap sort
+
+
+def heapify(array, i=0):
     large = i
     left = 2 * i + 1
-    right = 2 * i + 2 
-    #test if children need to be swapped
-    if left < len(array) and array[i] < array[left]: 
-        large = left 
-    if right < len(array) and array[large] < array[right]: 
-        large = right 
-    #swap root
-    if large != i: 
+    right = 2 * i + 2
+    # test if children need to be swapped
+    if left < len(array) and array[i] < array[left]:
+        large = left
+    if right < len(array) and array[large] < array[right]:
+        large = right
+    # swap root
+    if large != i:
         temp = array[i]
         array[i] = array[large]
         array[large] = temp
-        heapify(array, large) 
+        heapify(array, large)
     return array
+
 
 #------Esoteric algorithms----#
 """
     funny, absurd, useless, ridiculous algorithms, some aren't even technically algorithms.
 """
+
 
 def bogo(array):
     '''
@@ -367,24 +416,25 @@ def bogo(array):
             It can go on forever so dont use it unless you are trying to show what not to do
     '''
     # WARNING this can take a LONG time only run with fewer than 10 items to sort
-    cont =True 
-    #loop until the array is sorted
+    cont = True
+    # loop until the array is sorted
     while cont == True:
-        out =[]
+        out = []
         cont = False
-        #loop till the starting array has no items in it
+        # loop till the starting array has no items in it
         while len(array) > 0:
-            #move a random item to the end array
-            item = randint(0,len(array)-1)
+            # move a random item to the end array
+            item = randint(0, len(array)-1)
             out.append(array[item])
             array.remove(array[item])
-            #test to see if the array is sorted
+            # test to see if the array is sorted
             for i in range(len(out)-1):
                 if out[i] > out[i+1]:
                     cont = True
                     break
         array = []+out
     return(out)
+
 
 def intelligentDesign(array):
     '''
@@ -405,17 +455,22 @@ def intelligentDesign(array):
         notes:
             https://www.dangermouse.net/esoteric/intelligentdesignsort.html
     '''
-    lines=["WOW! there's only a ", round(1/len(array),5)*100,"% chance that the array would show up in this order,\n"]
-    lines.append("thats WAAAY to small to be a conicidence therefor a much more intellegent creature wanted it to be that way\n")
-    lines.append("and any \"sorting\" I do will only move it away from the intended order")
+    lines = ["WOW! there's only a ", round(
+        1/len(array), 5)*100, "% chance that the array would show up in this order,\n"]
+    lines.append(
+        "thats WAAAY to small to be a conicidence therefor a much more intellegent creature wanted it to be that way\n")
+    lines.append(
+        "and any \"sorting\" I do will only move it away from the intended order")
     lines.append("BEHOLD! the perfect order:\n")
     lines.append(array)
     out = ""
     for i in lines:
-        out +=str(i)
+        out += str(i)
     return out
 
-#aka solar bitflip sort
+# aka solar bitflip sort
+
+
 def miracle(array):
     '''
         Overview:
@@ -444,7 +499,9 @@ def miracle(array):
         if flipped == False:
             return
 
-#theatening sort DO NOT USE NO MATTER WHAT EVER!
+# theatening sort DO NOT USE NO MATTER WHAT EVER!
+
+
 def threat(array):
     '''
                      _____   ____        _   _  ____ _______     _____  _    _ _   _     _  _ 
@@ -453,7 +510,7 @@ def threat(array):
                     | |  | | |  | |     | . ` | |  | | | |      |  _  /| |  | | . ` |   | || |
                     | |__| | |__| |     | |\  | |__| | | |      | | \ \| |__| | |\  |   |_||_|
                     |_____/ \____/      |_| \_|\____/  |_|      |_|  \_\\____/|_| \_|   ( )( )
-    
+
     Overview:
             deletes files till the user says the array is sorted (soon it deletes all files)
         Best:
@@ -471,7 +528,7 @@ def threat(array):
         notes:
             based on one of 2 "stalin sorts" aka theatening sort, since I couldn't murder anone so I resorted to deleting files   
             also untested (obviously)                                               
-                                                                
+
     '''
     print("\n\n\nIT IS HIGHLY RECOMMENDED YOU DONT USE THIS IT WILL DELETE YOUR FILES DO NOT CONTINUE")
     print("type \"yes\" to continue")
@@ -494,6 +551,7 @@ def threat(array):
         print("Thank you for not making a terrible choice, have a nice day\n")
         return ""
 
+
 def stalin(array):
     '''
         Overview:
@@ -513,14 +571,15 @@ def stalin(array):
         notes:
             only get about log(n)? of your list back
     '''
-    i=1
+    i = 1
     while i < len(array):
-        if array[i-1]>array[i]:
+        if array[i-1] > array[i]:
             print(i, array[i])
             array.pop(i)
-            i-=1
-        i+=1
+            i -= 1
+        i += 1
     return(array)
+
 
 def sassy(array):
     '''
@@ -541,9 +600,11 @@ def sassy(array):
     '''
     return "sort it your own damn self!"
 
+
 def totally_original_sort(array):
     """eh ill look what python uses later"""
     return sorted(array)
+
 
 def meme(array):
     '''
@@ -562,7 +623,7 @@ def meme(array):
         Uses:
             always use this
     '''
-    out=[]
+    out = []
     prox = [0]*len(array)
     for i in range(len(array)):
         if abs(array[i]-420) < abs(array[i]-69):
@@ -570,9 +631,9 @@ def meme(array):
         else:
             prox[i] = abs(array[i]-69)
 
-    while len(array)>0:
+    while len(array) > 0:
         minimum = 0
-        #find smallest item and added to the end array
+        # find smallest item and added to the end array
         for i in range(len(prox)):
             if prox[i] < prox[minimum]:
                 minimum = i
@@ -583,42 +644,43 @@ def meme(array):
 
 #------not yet implimented----#
 
+
 def sudo_bogo(array):
     pass
-    #comming soon
+    # comming soon
+
 
 def pigeonhole(array):
     pass
-    #comming soon
+    # comming soon
+
 
 def tim(array):
     pass
-    #comming soon
+    # comming soon
 
-def pancake(array):
-    pass
-    #comming soon
 
 def Bozosort():
-    #NO, just dont use this
+    # NO, just dont use this
     pass
 
+
 def abacus():
-    #https://www.dangermouse.net/esoteric/abacussort.html
+    # https://www.dangermouse.net/esoteric/abacussort.html
     pass
+
 
 def sleep():
     pass
 
+
 def jinglesort():
-    #https://www.youtube.com/watch?v=kbzIbvWsDb0
+    # https://www.youtube.com/watch?v=kbzIbvWsDb0
     pass
-
-
 
 
 srt()
 print(array, "unsorted")
 print()
-print(meme(array))
+print(pancake(array))
 print(sorted(og), "sorted")
