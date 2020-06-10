@@ -19,6 +19,9 @@ import sys
 import pickle
 import math
 import os
+import time
+import threading
+import concurrent.futures
 
 array = []
 og = []
@@ -28,9 +31,9 @@ og = []
 
 def srt():
     global og
-    size = 10
+    size = 100
     rng = 100
-    for i in range(size):
+    for _ in range(size):
         num = randint(1, rng)
         array.append(num)
         og.append(num)
@@ -61,7 +64,7 @@ def bubble(array):
             Don't use it unless you are teaching the basics of sorting
     '''
     # big loop
-    for i in range(len(array)-1):
+    for _ in range(len(array)-1):
         # small loop
         for j in range(len(array)-1):
             # check and perform swap
@@ -642,6 +645,46 @@ def meme(array):
         prox.pop(minimum)
     return(out)
 
+
+newarray = []
+
+
+def sleep(array):
+    '''
+        Overview:
+            new thread starts and sleeps for each item/10 add them into an array in the order they come back 
+        Best:
+            n
+        Average:
+            n
+        Worst:
+            n
+        Stable:
+            Not even close in any sense of the word
+        Comparision:
+            Nope
+        Notes:
+            Proof O(n) is not always better or faster. if the devisor changes it may cause the system to become unstable
+    '''
+    start = time.perf_counter()
+    thread_array = []
+    for i in array:
+        thread_array.append(threading.Thread(target=threads, args=[i]))
+    array = []
+    for i in thread_array:
+        i.start()
+    for i in thread_array:
+        i.join()
+
+    end = time.perf_counter()
+    print(end-start)
+    return newarray
+
+
+def threads(item):
+    time.sleep(item/10)
+    newarray.append(item)
+    return item
 #------not yet implimented----#
 
 
@@ -670,17 +713,22 @@ def abacus():
     pass
 
 
-def sleep():
-    pass
-
-
 def jinglesort():
     # https://www.youtube.com/watch?v=kbzIbvWsDb0
     pass
 
 
 srt()
+result = sleep(array)
+with open("test", "w") as test:
+    for i in result:
+        test.write(str(i)+"\n")
+
+og = sorted(og)
+with open("sorted", "w") as sorted_file:
+    for i in og:
+        sorted_file.write(str(i)+"\n")
+
 print(array, "unsorted")
-print()
-print(pancake(array))
-print(sorted(og), "sorted")
+print(result, "implimented")
+print(og, "sorted")
