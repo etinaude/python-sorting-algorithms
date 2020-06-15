@@ -31,8 +31,8 @@ og = []
 
 def srt():
     global og
-    size = 100000
-    rng = 10000
+    size = 100000000
+    rng = 100
     for _ in range(size):
         num = randint(1, rng)
         array.append(num)
@@ -394,6 +394,24 @@ def heapify(array, i=0):
 
 
 def bucket(array):
+    '''
+        Overview:
+            splits array into 10 buckets then sorts each
+        Best:
+            n*log(n)
+        Average:
+            n*log(n)
+        Worst:
+            n*log(n)
+        Stable:
+            no
+        Comparision:
+            no
+        Uses:
+            more numbers than quick sort
+        Notes:
+            in this case it uses quick sort to sort each bucket but it can use any sort
+    '''
     large = array[0]
     for i in array:
         if i > large:
@@ -410,6 +428,22 @@ def bucket(array):
 
 
 def pigeonhole(array):
+    '''
+        Overview:
+            creates k pigeon holes, puts each item into a pigeon hole
+        Best:
+            n+k
+        Average:
+            n+k
+        Worst:
+            n+k
+        Stable:
+            yes
+        Comparision:
+            no
+        Uses:
+            many numbers, small range eg 10000 numbers between 0 and 100
+    '''
     large = array[0]
     for i in array:
         if large < i:
@@ -749,18 +783,18 @@ srt()
 t0 = time.time()
 result = pigeonhole(array)
 t1 = time.time()
-# '''
-with open("test", "w") as test:
-    for i in result:
-        test.write(str(i)+"\n")
+'''
+   with open("test", "w") as test:
+       for i in result:
+           test.write(str(i)+"\n")
 
-og = sorted(og)
-print(og, "sorted")
-with open("sorted", "w") as sorted_file:
-    for i in og:
-        sorted_file.write(str(i)+"\n")
-# '''
-# '''
+   og = sorted(og)
+   print(og, "sorted")
+   with open("sorted", "w") as sorted_file:
+       for i in og:
+           sorted_file.write(str(i)+"\n")
+   # '''
+'''
 print(array, "unsorted")
 print(result, "implimented")
 # '''
