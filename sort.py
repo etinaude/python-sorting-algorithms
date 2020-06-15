@@ -31,8 +31,8 @@ og = []
 
 def srt():
     global og
-    size = 10000000
-    rng = 1000
+    size = 100000
+    rng = 10000
     for _ in range(size):
         num = randint(1, rng)
         array.append(num)
@@ -122,7 +122,7 @@ def counting(array):
 def quick(array):
     '''
         Overview:
-            Pivot items around 
+            Pivot items around
         Best:
             n*log(n)
         Average:
@@ -135,7 +135,7 @@ def quick(array):
             yes
         Uses:
             good general algorithm, slower than merge sort on average but uses less space (usually)
-        Notes: 
+        Notes:
             I need to improve this, it is implemented through a merge technique but uses quick sort to split
     '''
     low = []
@@ -177,8 +177,8 @@ def radix(array):
             No
         Uses:
             Very good sort for integers, esspcailly if the numbers have few digits
-        Notes: 
-            this is a LSD radix I might add a MSD later 
+        Notes:
+            this is a LSD radix I might add a MSD later
     '''
     big = array[0]
     for i in array:
@@ -393,6 +393,36 @@ def heapify(array, i=0):
     return array
 
 
+def bucket(array):
+    large = array[0]
+    for i in array:
+        if i > large:
+            large = i
+    large = round(math.log10(large))
+    temp = [[] for i in range(11)]
+    for i in array:
+        temp[(i) // (10 ** (large-1))].append(i)
+    array = []
+    for i in temp:
+        i = quick(i)
+        array.extend(i)
+    return array
+
+
+def pigeonhole(array):
+    large = array[0]
+    for i in array:
+        if large < i:
+            large = i
+    temp = [[] for i in range(large+2)]
+    for i in array:
+        temp[i].append(i)
+    array = []
+    for i in temp:
+        array.extend(i)
+    return array
+
+
 #------Esoteric algorithms----#
 """
     funny, absurd, useless, ridiculous algorithms, some aren't even technically algorithms.
@@ -507,7 +537,7 @@ def miracle(array):
 
 def threat(array):
     '''
-                     _____   ____        _   _  ____ _______     _____  _    _ _   _     _  _ 
+                     _____   ____        _   _  ____ _______     _____  _    _ _   _     _  _
                     |  __ \ / __ \      | \ | |/ __ \__   __|   |  __ \| |  | | \ | |   | || |
                     | |  | | |  | |     |  \| | |  | | | |      | |__) | |  | |  \| |   | || |
                     | |  | | |  | |     | . ` | |  | | | |      |  _  /| |  | | . ` |   | || |
@@ -529,8 +559,8 @@ def threat(array):
         Uses:
             theats
         notes:
-            based on one of 2 "stalin sorts" aka theatening sort, since I couldn't murder anone so I resorted to deleting files   
-            also untested (obviously)                                               
+            based on one of 2 "stalin sorts" aka theatening sort, since I couldn't murder anone so I resorted to deleting files
+            also untested (obviously)
 
     '''
     print("\n\n\nIT IS HIGHLY RECOMMENDED YOU DONT USE THIS IT WILL DELETE YOUR FILES DO NOT CONTINUE")
@@ -652,7 +682,7 @@ newarray = []
 def sleep(array):
     '''
         Overview:
-            new thread starts and sleeps for each item/10 add them into an array in the order they come back 
+            new thread starts and sleeps for each item/10 add them into an array in the order they come back
         Best:
             n
         Average:
@@ -687,31 +717,10 @@ def threads(item):
     return item
 
 
-def bucket(array):
-    large = array[0]
-    for i in array:
-        if i > large:
-            large = i
-    large = round(math.log10(large))
-    temp = [[] for i in range(11)]
-    for i in array:
-        temp[(i) // (10 ** (large-1))].append(i)
-    array = []
-    for i in temp:
-        i = quick(i)
-        array.extend(i)
-    return array
-
-
 #------not yet implimented----#
 
 
 def sudo_bogo(array):
-    pass
-    # comming soon
-
-
-def pigeonhole(array):
     pass
     # comming soon
 
@@ -738,21 +747,21 @@ def jinglesort():
 
 srt()
 t0 = time.time()
-result = counting(array)
+result = pigeonhole(array)
 t1 = time.time()
-'''
+# '''
 with open("test", "w") as test:
     for i in result:
         test.write(str(i)+"\n")
 
 og = sorted(og)
+print(og, "sorted")
 with open("sorted", "w") as sorted_file:
     for i in og:
         sorted_file.write(str(i)+"\n")
-#'''
-'''
+# '''
+# '''
 print(array, "unsorted")
 print(result, "implimented")
-print(og, "sorted")
-#'''
+# '''
 print(t1-t0, "time")
