@@ -31,8 +31,8 @@ og = []
 
 def srt():
     global og
-    size = 100
-    rng = 100
+    size = 10000000
+    rng = 1000
     for _ in range(size):
         num = randint(1, rng)
         array.append(num)
@@ -685,6 +685,24 @@ def threads(item):
     time.sleep(item/10)
     newarray.append(item)
     return item
+
+
+def bucket(array):
+    large = array[0]
+    for i in array:
+        if i > large:
+            large = i
+    large = round(math.log10(large))
+    temp = [[] for i in range(11)]
+    for i in array:
+        temp[(i) // (10 ** (large-1))].append(i)
+    array = []
+    for i in temp:
+        i = quick(i)
+        array.extend(i)
+    return array
+
+
 #------not yet implimented----#
 
 
@@ -719,7 +737,10 @@ def jinglesort():
 
 
 srt()
-result = sleep(array)
+t0 = time.time()
+result = counting(array)
+t1 = time.time()
+'''
 with open("test", "w") as test:
     for i in result:
         test.write(str(i)+"\n")
@@ -728,7 +749,10 @@ og = sorted(og)
 with open("sorted", "w") as sorted_file:
     for i in og:
         sorted_file.write(str(i)+"\n")
-
+#'''
+'''
 print(array, "unsorted")
 print(result, "implimented")
 print(og, "sorted")
+#'''
+print(t1-t0, "time")
