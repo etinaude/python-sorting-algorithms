@@ -1,4 +1,3 @@
-# just ignore the directory settings file
 \.directory
-\reddit_auth.py
-_pycahe_
+/reddit_auth.py
+__pycahe__/
