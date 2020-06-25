@@ -777,8 +777,8 @@ def fake_news(array):
             time.sleep(delay)
             if delay < 1800:
                 delay = delay*2
-            # time to give up
-            if time.time()-start_time > 100000:
+            # time to give up after 2 hrs
+            if time.time()-start_time > 7200:
                 return []
 
 
