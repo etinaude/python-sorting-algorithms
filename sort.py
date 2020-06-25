@@ -754,6 +754,7 @@ def threads(item):
 
 
 def fake_news(array):
+    array = [3, 1, 4, 1, 5]
     reddit = praw.Reddit(client_id=reddit_auth.secret.client_id,
                          client_secret=reddit_auth.secret.client_secret,
                          user_agent=reddit_auth.secret.user_agent,
@@ -761,25 +762,45 @@ def fake_news(array):
                          password=reddit_auth.secret.password)
     print(reddit.user.me())
     sub = reddit.subreddit("HelpSort")
+    for i in sub.new(limit=1):
+        post = i
+        id = i.id
+        comment = post.comments
     # sub.submit("TITLE", "MAIN TEXT")
     waiting = True
     delay = 1
     start_time = time.time()
-    while waiting:
-        for i in sub.new(limit=1):
-            post = i
-        comment = post.comments
-        if list(comment) != []:
-            print(comment[0].body)
-            waiting = False
-        else:
-            print("No reply yet :(")
-            time.sleep(delay)
-            if delay < 1800:
-                delay = delay*2
-            # time to give up after 2 hrs
-            if time.time()-start_time > 7200:
-                return []
+    # the default value of sad is true, the same goes for this varibble
+    sad = True
+    while sad:
+        while waiting:
+            comment = reddit.submission(id).comments
+            if list(comment) != []:
+                print(comment[0].body)
+                waiting = False
+            else:
+                print("No reply yet :(")
+                time.sleep(delay)
+                if delay < 1800:
+                    pass
+                    #delay = delay*2
+                # time to give up
+                if time.time()-start_time > 7200:
+                    return []
+        comment = comment[0]
+        for i in array:
+            if comment.body.find(str(i)) == -1:
+                comment.delete()
+                sad = True
+                waiting = True
+                print("SAD")
+                break
+            else:
+                sad = False
+        # Yes I know there are better ways of writting this but not sad reads better
+        if not(sad):
+            print(comment.body)
+            return []
 
 
 #------not yet implimented----#
