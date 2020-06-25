@@ -22,6 +22,8 @@ import os
 import time
 import threading
 import concurrent.futures
+import praw
+import reddit_auth
 
 array = []
 og = []
@@ -31,7 +33,7 @@ og = []
 
 def srt():
     global og
-    size = 100000000
+    size = 10000
     rng = 100
     for _ in range(size):
         num = randint(1, rng)
@@ -713,7 +715,7 @@ def meme(array):
 newarray = []
 
 
-def sleep(array):
+def sleep_sort(array):
     '''
         Overview:
             new thread starts and sleeps for each item/10 add them into an array in the order they come back
@@ -751,6 +753,35 @@ def threads(item):
     return item
 
 
+def fake_news(array):
+    reddit = praw.Reddit(client_id=reddit_auth.secret.client_id,
+                         client_secret=reddit_auth.secret.client_secret,
+                         user_agent=reddit_auth.secret.user_agent,
+                         username=reddit_auth.secret.username,
+                         password=reddit_auth.secret.password)
+    print(reddit.user.me())
+    sub = reddit.subreddit("HelpSort")
+    # sub.submit("TITLE", "MAIN TEXT")
+    waiting = True
+    delay = 1
+    start_time = time.time()
+    while waiting:
+        for i in sub.new(limit=1):
+            post = i
+        comment = post.comments
+        if list(comment) != []:
+            print(comment[0].body)
+            waiting = False
+        else:
+            print("No reply yet :(")
+            time.sleep(delay)
+            if delay < 1800:
+                delay = delay*2
+            # time to give up
+            if time.time()-start_time > 100000:
+                return []
+
+
 #------not yet implimented----#
 
 
@@ -781,7 +812,7 @@ def jinglesort():
 
 srt()
 t0 = time.time()
-result = pigeonhole(array)
+result = fake_news(array)
 t1 = time.time()
 '''
    with open("test", "w") as test:
