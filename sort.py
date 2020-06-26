@@ -22,8 +22,11 @@ import os
 import time
 import threading
 import concurrent.futures
-import praw
-import reddit_auth
+try:
+    import praw
+    import reddit_auth
+except:
+    print("Please ensure that PRAW is installed and that a file named reddit_auth.py exists, the read fake news sort for more info")
 
 array = []
 og = []
@@ -33,7 +36,7 @@ og = []
 
 def srt():
     global og
-    size = 10000
+    size = 10
     rng = 100
     for _ in range(size):
         num = randint(1, rng)
@@ -754,40 +757,73 @@ def threads(item):
 
 
 def fake_news(array):
-    array = [3, 1, 4, 1, 5]
+    '''
+        Overview:
+            posts a question on reddit and takes the first response as the correctly sorted array with minimal checking
+        Best:
+            ?
+        Average:
+            ?
+        Worst:
+            ?
+        Stable:
+            not at all
+        Comparision:
+            sometimes I guess
+        Notes:
+            lets see how good reddit is at sorting
+    '''
+    '''
+    please create a reddit script using this page https://old.reddit.com/prefs/apps/
+    create a file named reddit_auth.py which contains the following class
+    replace variables such as $ID with the details from the reddit script which was created. 
+    class secret:
+        client_id = "$ID"
+        client_secret = "$SECRET"
+        user_agent = "my user agent"
+        username = "$USERNAME"
+        password = "$PASSWORD"
+    '''
     reddit = praw.Reddit(client_id=reddit_auth.secret.client_id,
                          client_secret=reddit_auth.secret.client_secret,
                          user_agent=reddit_auth.secret.user_agent,
                          username=reddit_auth.secret.username,
                          password=reddit_auth.secret.password)
-    print(reddit.user.me())
+    print("Submitting as:", reddit.user.me())
     sub = reddit.subreddit("HelpSort")
-    for i in sub.new(limit=1):
-        post = i
-        id = i.id
-        comment = post.comments
-    # sub.submit("TITLE", "MAIN TEXT")
+    post = sub.submit("Please help me sort this array", str(array))
+    id = post.id
+    comment = post.comments
+    # for i in sub.new(limit=1):
+    #    post = i
+    #    id = i.id
+    #    comment = post.comments
     waiting = True
     delay = 1
     start_time = time.time()
     # the default value of sad is true, the same goes for this varibble
     sad = True
+    # while no valid response has bee given
     while sad:
+        # while the comments are empty
         while waiting:
             comment = reddit.submission(id).comments
+            # check if there is a comment
             if list(comment) != []:
                 print(comment[0].body)
                 waiting = False
             else:
                 print("No reply yet :(")
                 time.sleep(delay)
+                # add one second to the time to delay before next check, to reduce the number of failed checks
                 if delay < 1800:
-                    pass
-                    #delay = delay*2
+                    delay = delay+1
                 # time to give up
                 if time.time()-start_time > 7200:
                     return []
+        # take the first comment
         comment = comment[0]
+        # check if each element is in the array
         for i in array:
             if comment.body.find(str(i)) == -1:
                 comment.delete()
