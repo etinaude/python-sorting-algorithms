@@ -67,10 +67,14 @@ There are notes before each algorithm explaining it.
 - n = number of elements to sort
 - d = number of digits in the largest element
 - r = range of elements (largest - smallest)
-- k = size of key
+- k = size of key (in this case the size of the digit)
 
 the best, average and worst shows the trend of how each algorithm will perform when increasing these values.\
 I will continue improving this and adding new algorithms
+
+Some algorithms use comparisons which allows them to be used in more situations while others use specific properties of their character set (integers for this program). Due to this sometimes the algorithm with the best big O is not always the best algorithm. to further explain this, likely the bets big O of all algorithms is sleep sort with O(k) but sleep sort is difficult to implement in a way that it will reliably sort and will often run slower than other algorithms.
+
+This program is a collection of both standard and obscure algorithms, for an amazing demonstration of LOTS of the more common algorithms, please look into website http://panthema.net/2013/sound-of-sorting/
 
 - https://xkcd.com/1185/
 - https://stackoverflow.com/questions/2609857/are-there-any-worse-sorting-algorithms-than-bogosort-a-k-a-monkey-sort
