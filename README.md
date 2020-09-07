@@ -1,7 +1,7 @@
 # python-sorting-algorithms
 
 a series of algorithms in python
-please feel free to add and edit
+please feel free to add and edit, I made this to improve and practice my programming and to learn new sorting techniques, and to have fun with esoteric sorts.
 
 ## These have been added:
 
